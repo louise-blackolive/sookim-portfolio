@@ -68,6 +68,100 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 
 <그림 삽입>
 
+
 ### 5-2. RDS 인스턴스 생성하기
 ① [RDS] > [Database] > [Create database] 클릭
+② Create Database 페이지에서
+ * Engine options : Amazon Aurora 선택
+ * Edition : Amazon Aurora with MySQL compatibility 선택
+ * Version : Aurora(MySQL)-5.6.10a 선택
+<그림 삽입>
+ * Template : Dev/Test 선택
+ * DB Cluster Identifier : aurora-lab-mysql56 입력
+ * Master username : sookim (본인의 아이디 입력)
+ * Master password : 기억 할 수 있는 패스워드 입력
+<그림 삽입>
+ * VPC : CloudFormation 스택으로 생성 된 VPC 선택 (aurora-lab)
+ * 아래 Additional connetivity configuration 화살표를 눌러 세부정보를 설정합니다.
+ * Subnet group : CloudFormation 스택으로 생성 된 subnet group 선택 (aurora-lab)
+ * Security Group : CloudFormation 스택으로 생성 된 Security Group 선택 (aurora-lab)
+<그림 삽입>
+ * [Create database] 클릭하여 생성 완료
+
+### 5-3. 데이터베이스에 접속 해 보기
+RDS 생성이 완료되었으면, 데이터베이스에 접속 할 수 있습니다. 이 실습에서 생성 된 환경은 데이터베이스가 인터넷 통신이 되지않는 private 환경에 위치 해 있으므로 bastion 호스트를 통해서만 접근 할 수 있습니다.
+
+먼저 CloudFormation으로 생성 된 EC2 인스턴스에 접속합니다.
+
+① [EC2]>[Intance] 항목으로 가면 CloudFormation Stack 으로 생성 된 인스턴스가 있습니다.
+aurora-lab 인스턴스를 선택하여 Public IP 주소를 확인합니다.
+<그림 삽입>
+>	Linux & Mac
+> ①	터미널 실행 후 앞 단계에서 다운받았던 keypair 가 있는 디렉토리로 이동.
+> ②	keypair의 권한을 400으로 변경
+> ```
+> chmod 400 aurora-lab-key.pem
+> ```
+> ③	SSH 접속 수행
+> ```
+> ssh -i aurora-lab-key.pem centos@<hostname> 
+> ```
+<그림 삽입>
+
+> windows
+> ④	Putty에서 사용되는 ppk 파일 생성
+> https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html
+> <그림 삽입>
+> ⑤	PuTTy Key Generator 실행
+>   I.	창 가장 아래 parameter 를 [RSA] 로 선택
+>   II.	Load 클릭
+>   III.	다운받은 keypair PEM 파일 선택
+>   IV.	Save private key 클릭
+>   V.	PPK 포맷으로 저장 
+> <그림 삽입>
+> * *_ppk 파일로 변환 시 파일명은 pem 원본 파일과 같게 하고 확장자는 입력하지 않는다_*
+> ⑥	Putty 실행
+> ⑦	Session 카테고리에서
+> Host Name : EC2의 <접속유저>@<Public IP> 입력
+> ```
+> centos@ec2-13-124-68-204.ap-northeast-2.compute.amazonaws.com
+> ```
+> ⑧	Connection 카테고리에서 
+>   I.	SSH -> Auth -> Private key file for authentication : Browse 클릭
+>   II.	ppk 파일 선택
+>   III.	open 클릭
+> <그림 삽입>
+> ⑨	로그인
+> Login as : centos
+> <그림 삽입>
+
+EC2 인스턴스 접속에 성공했다면 아래와 같은 프롬프트가 떨어집니다
+<그림 삽입>
+
+RDS의 접속 정보를 확인하기 위해 웹 콘솔의 RDS로 이동합니다.
+② [RDS] > [Instance] 에서 생성 된 인스턴스를 클릭하여 정보를 확인합니다.
+<그림 삽입>
+③ 터미널에서 MySQL 명령어를 이용하여 RDS에 접속합니다
+```
+mysql -h <rds endpoint> -usookim -p
+```
+<그림 삽입>
+
+터미널로 두 서버에 각가 접속하는 방법도 있지만, database tool을 이용하여 한 번에 접속할 수 있습니다. 
+MySQL 툴인 Workbench로 접속 해 봅시다
+
+④ Workbench를 실행 시킨 후 + 버튼을 눌러 신규 연결을 만듭니다
+   * Connection Name : 식별 가능한 이름을 지정합니다 (aurora-mysql56)
+   * Connection Method : Standard TCP/IP over SSH 선택
+   * SSH Hostname : EC2의 PublicIP를 입력합니다.
+   * SSH Username : centos
+   * SSH Key File : keypair를 지정합니다 (aurora-lab-key.pem)
+   * MySQL Hostname : RDS의 endpoint 입력
+   * Username : sookim
+
+<그림 삽입>
+
+⑤ 생성 된 연결을 더블클릭 및 데이터베이스 패스워드 입력 후 데이터베이스에 접속합니다
+
+<그림 삽입>
 
