@@ -91,4 +91,140 @@ Auto Scaling을 사용하려면 먼저 기본 인스턴스와 적어도 하나�
 
 <그림 삽입>
 
-⑦
+⑦ vi 편집기를 열어 아래 내용을 작성합니다.
+
+```
+]$ vi loadtest.py
+```
+
+아래 내용을 붙여넣기 합니다
+
+```
+import mysql.connector
+import socket
+import time
+import thread
+import random
+import threading
+import sys
+
+# Global Variables
+start_time = time.time()
+query_count = 0
+lock = threading.Lock()
+
+def thread_func(host_endpoint, username, password, schema, max_id):
+    # Specify that query_count is a global variable
+    global query_count
+
+    # Loop Indefinitely
+    while True:
+        try:
+            # Resolve the endpoint
+            host_name = socket.gethostbyname(host_endpoint)
+
+            # Generate a random number to use as the lookup value
+            key_value = str(random.randrange(1, max_id))
+
+            # Create the SQL query to execute
+            sql_command = "select * from sbtest1 where id={0};".format(key_value)
+
+            # Connect to the reader endpoint
+            conn = mysql.connector.connect(host=host_name, user=username, passwd=password, database=schema, autocommit=True)
+
+            # Execute query
+            conn.cmd_query(sql_command)
+
+            # Close the connection
+            conn.close()
+
+            # Increment the executed query count
+            with lock:
+                query_count += 1
+        except:
+            # Display any exception information
+            print(sys.exc_info()[1])
+
+
+def progress():
+    # Loop indefinitely
+    while True:
+        # Format an output string
+        output = "{0}\r".format(int(query_count / (time.time()-start_time)))
+
+        # Write to STDOUT and flush
+        sys.stdout.write(output)
+        sys.stdout.flush()
+
+        # Sleep this thread for 1 second
+        time.sleep(1)
+
+# Entry Point
+host_endpoint = '<aurora-readonly-endpoint>'
+username = '<user>'
+password = '<Password>'
+schema = 'test'
+max_id = 2500000
+thread_count = 25
+
+# Start progress thread
+thread.start_new_thread(progress, ())
+
+# Start readers
+for thread_id in range(thread_count):
+        thread.start_new_thread(thread_func, (host_endpoint, username, password, schema, max_id,))
+
+# Loop indefinitely to prevent application exit
+while 1:
+        pass
+```
+
+저장하고 빠져나온 후 스크립트를 실행시킵니다.
+
+```
+python loadtest.py
+```
+
+웹콘솔로 가서 읽기 복제본에 부하가 얼마나 가는지 확인합니다.
+
+<그림 삽입>
+
+CPU 사용률 50%가 넘은 후로 읽기 복제본이 추가되었는지 확인합니다.
+
+<그림 삽입>
+
+테스트가 완료되었으면 SSH 창에서 Ctr+C 를 눌러 파이썬 스크립트를 종료합니다. 종료하지 않으면 부하가 계속 가기 때문에 멈춰주세요
+
+### 5-2. Failover 수행 후 영향도 확인하기
+
+테스트용 테이블 생성
+
+```
+create table test.increase_data(
+id int not null auto_increment primary key,
+input_time datetime not null);
+```
+
+EC2 Server에서 쉘 스크립트를 작성하고 실행
+
+```
+#!/bin/bash
+
+for i in {1..100}
+do
+mysql -h database-3.cluster-cwy629cxvxr9.ap-northeast-2.rds.amazonaws.com -u admin -pzmffkdnemxla1! \
+        -e 'insert into test.increase_data(input_time)
+        values(now());'
+        sleep 3
+        echo "###################################################"
+        echo "$i insert finished : 'date'"
+        echo "###################################################"
+done
+```
+
+데이터 계속 들어가게 냅두고
+웹 콘솔에서 마스터 페일오버 수행
+
+이벤트 페이지에서 페일오버 완료되었는지 확인 및 writer 변경되었는지 확인
+failover 완료 후에 스크립트가 계속 수행되고 있는지 확인.
+데이터베이스에 접속 및 데이터를 조회하여 데이터가 인서트 되었는지 확인

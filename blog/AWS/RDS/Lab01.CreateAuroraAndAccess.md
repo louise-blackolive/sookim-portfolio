@@ -31,6 +31,7 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 1. CloudFormation 을 이용해 실습환경 셋팅하기 
 2. RDS 인스턴스 생성하기
 3. 데이터베이스에 접속 해 보기
+4. 쿼리 수행하기
 
 ## 5. How to
 
@@ -185,3 +186,23 @@ MySQL 툴인 Workbench로 접속 해 봅시다
 ⑤ 생성 된 연결을 더블클릭 및 데이터베이스 패스워드 입력 후 데이터베이스에 접속합니다
 
 <그림 삽입>
+
+### 5-4. 테이블 생성 쿼리 수행하기
+
+wget
+
+```
+CREATE DATABASE test;
+
+USE test;
+
+DROP TABLE IF EXISTS `sbtest1`;
+CREATE TABLE `sbtest1` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `k` int(10) unsigned NOT NULL DEFAULT '0', `c` char(120) NOT NULL DEFAULT '', `pad` char(60) NOT NULL DEFAULT '',PRIMARY KEY (`id`), KEY `k_1` (`k`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOAD DATA LOCAL INFILE 'sample.part_00000' REPLACE INTO TABLE sbtest1 CHARACTER SET 'latin1' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
+    EXIT
+```
+
+wget 데이터파일
+mysql -h <endpoint> -usookim -p -f 데이터파일
+LOAD DATA LOCAL INFILE sample.part_00000 REPLACE INTO TABLE sbtest1 CHARACTER SET 'latin1' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';

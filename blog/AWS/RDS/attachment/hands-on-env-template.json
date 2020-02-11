@@ -210,7 +210,10 @@
                 "sudo yum install -y python3\n",
                 "sudo yum install -y epel-release\n",
                 "sudo yum install -y http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm\n",
-                "sudo yum install -y mysql-community-server\n"
+                "sudo yum install -y mysql-community-server\n",
+                "sudo yum install -y python-pip",
+                "sudo pip install mysql-connector",
+                "sudo yum install wget"
               ]
             ]
           }
