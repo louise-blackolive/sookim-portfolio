@@ -1,4 +1,4 @@
-# [DHK] Lab2. RDS Aurora 의 주요 기능 활용하기
+# [DHK] Lab2. RDS Aurora의 읽기 복제본 Auto Scaling과 Failover 실습
 
 ## 1. 개요
 
@@ -19,6 +19,8 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 - MySQL 5.7
 - Workbench
 - Putty 및 Terminal application
+- python
+- bash shell script
 
 ## 3. 목표 아키텍쳐
 
@@ -30,8 +32,6 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 <hr/>
 1. 읽기 복제본 생성 및 AutoScaling 적용하기
 2. Failover 수행 및 영향도 확인하기
-3. 스냅샷 백업과 시점복구 수행하기
-4. Performance Insight 확인하기
 
 ## 5. How to
 
@@ -99,7 +99,7 @@ Auto Scaling을 사용하려면 먼저 기본 인스턴스와 적어도 하나�
 
 아래 내용을 붙여넣기 합니다
 
-```
+```python
 import mysql.connector
 import socket
 import time
@@ -207,7 +207,7 @@ input_time datetime not null);
 
 EC2 Server에서 쉘 스크립트를 작성하고 실행
 
-```
+```bash
 #!/bin/bash
 
 for i in {1..100}
@@ -224,7 +224,7 @@ done
 
 데이터 계속 들어가게 냅두고
 웹 콘솔에서 마스터 페일오버 수행
-
 이벤트 페이지에서 페일오버 완료되었는지 확인 및 writer 변경되었는지 확인
 failover 완료 후에 스크립트가 계속 수행되고 있는지 확인.
 데이터베이스에 접속 및 데이터를 조회하여 데이터가 인서트 되었는지 확인
+한번 더 수행해서 마스터 바꿈
