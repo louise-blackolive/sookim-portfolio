@@ -67,16 +67,21 @@ Auto Scaling을 사용하려면 먼저 기본 인스턴스와 적어도 하나�
 읽기 복제본 생성이 완료 되었으면 Auto Scaling 설정을 시작합니다.
 
 ④ 실습대상 클러스터를 선택 후 [Actions] > [Add replica autoscaling] 메뉴를 선택
-![스크린샷 2020-02-18 오후 5.50.02.png](/wikis/2597678232643068082/files/2681937376852216448)
+
+<img src="image/Lab02.Screenshot05.png" width="500">
 
 ⑤ 읽기 Auto Scaling 설정을 아래와같이 선택합니다
 
 - Policy name : 식별 가능한 이름으로 기재합니다 (aurora-autoscaling-test)
-- Target value : 50
-  ![스크린샷 2020-02-17 오후 3.05.22.png](/wikis/2597678232643068082/files/2681129869385328435)
+- Target value : 40
+
+  <img src="image/Lab02.Screenshot06.png" width="400">
+
 - Minimum capacity : 1
 - Maximum capacity : 2
-  ![스크린샷 2020-02-17 오후 3.05.34.png](/wikis/2597678232643068082/files/2681130270983597353)
+
+  <img src="image/Lab02.Screenshot07.png" width="400">
+
 - [Add policy] 버튼을 눌러 설정을 완료합니다.
 
 ### 5-3. Auto Scaling 테스트하기
@@ -87,15 +92,108 @@ EC2 서버에 SSH 로 접속하여 home 디렉토리에서 진행합니다.
 wget
 ```
 
-### 5-4.
+아래와 같이 python 스크립트를 작성합니다.
+
+```Bash
+vi loadtest.py
+```
+
+```Python
+import mysql.connector
+import socket
+import time
+import thread
+import random
+import threading
+import sys
+
+# Global Variables
+start_time = time.time()
+query_count = 0
+lock = threading.Lock()
+
+def thread_func(host_endpoint, username, password, schema, max_id):
+    # Specify that query_count is a global variable
+    global query_count
+
+    # Loop Indefinitely
+    while True:
+        try:
+            # Resolve the endpoint
+            host_name = socket.gethostbyname(host_endpoint)
+
+            # Generate a random number to use as the lookup value
+            key_value = str(random.randrange(1, max_id))
+
+            # Create the SQL query to execute
+            sql_command = "select * from sbtest1 where id={0};".format(key_value)
+
+            # Connect to the reader endpoint
+            conn = mysql.connector.connect(host=host_name, user=username, passwd=password, database=schema, autocommit=True)
+
+            # Execute query
+            conn.cmd_query(sql_command)
+
+            # Close the connection
+            conn.close()
+
+            # Increment the executed query count
+            with lock:
+                query_count += 1
+        except:
+            # Display any exception information
+            print(sys.exc_info()[1])
+
+
+def progress():
+    # Loop indefinitely
+    while True:
+        # Format an output string
+        output = "{0}\r".format(int(query_count / (time.time()-start_time)))
+
+        # Write to STDOUT and flush
+        sys.stdout.write(output)
+        sys.stdout.flush()
+
+        # Sleep this thread for 1 second
+        time.sleep(1)
+
+# Entry Point
+host_endpoint = sys.argv[1]
+username = 'sookim'
+password = 'zmffkdnemxla1!'
+schema = 'aurora_test'
+max_id = 2500000
+thread_count = 25
+
+# Start progress thread
+thread.start_new_thread(progress, ())
+
+# Start readers
+for thread_id in range(thread_count):
+        thread.start_new_thread(thread_func, (host_endpoint, username, password, schema, max_id,))
+
+# Loop indefinitely to prevent application exit
+while 1:
+        pass
+```
+
+위 스크립트를 작성 할 때, 데이터베이스 접속정보를 꼭 확인하고 변경 해 주세요
+
+아래 명령어로 작성 된 스크립트를 저장하고 빠져나옵니다.
+
+```vi
+:wq!
+```
 
 설정 하기 전, RDS Aurora 설정을 확인하여 Read-only Endpoint를 기록 해 둡니다
-![스크린샷 2020-02-18 오후 5.58.36.png](/wikis/2597678232643068082/files/2681941861394243091)
 
-① 현 위치에서 아래와 같이 python 스크립트를 실행시켜 RDS 읽기 복제본으로 부하를 줍니다.
+<img src="image/Lab02.Screenshot08.png" width="500">
 
-```
-python Lab2.loadtest.py <rds_endpoint>
+현 위치에서 아래와 같이 python 스크립트를 실행시켜 RDS 읽기 복제본으로 부하를 줍니다.
+
+```Bash
+python loadtest.py <rds_endpoint>
 ```
 
 ![스크린샷 2020-02-18 오후 6.13.48.png](/wikis/2597678232643068082/files/2681950206626768009)
