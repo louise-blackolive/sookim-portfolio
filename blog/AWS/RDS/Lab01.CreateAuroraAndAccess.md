@@ -46,22 +46,17 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 ② [CloudFormation] > [Stack] > [Create stack] 을 클릭하여 스택 생성을 시작합니다.
 ③ Specify template 화면에서
 
-- Amazon S3 URL을 아래 주소를 복사하여 붙여넣기 합니다
-  https://sookim-education.s3.ap-northeast-2.amazonaws.com/Materials/DeliveryHero/cf-designer.json
-
-  <그림 삽입>
+- 아래 CloudFormation 템플릿을 다운로드 받아 업로드 합니다.
+  [Lab01.env-template.json](https://github.com/louise-blackolive/sookim-portfolio/blob/master/blog/AWS/RDS/attachment/Lab01.env-template.json)
+  <img src="image/Lab01.Screenshot02.png" width="80%">
 
 ④ Specify stack details 화면에서
 
-    I.	Stack name : aurora-lab 입력
-
-    II.	KeyName : aurora-lab-key 선택
-
-    <그림 삽입>
-
-    III. 나머지는 그대로 두고 [Next] 클릭
-
-⑤ [Create stack] 을 클릭하여 스택 생성을 완료합니다.
+- Stack name : aurora-lab 입력
+- KeyName : aurora-lab-key 선택
+  <img src="image/Lab01.Screenshot03.png" width="80%">
+- 나머지는 그대로 두고 [Next] 클릭
+  ⑤ [Create stack] 을 클릭하여 스택 생성을 완료합니다.
 
 <그림 삽입>
 
