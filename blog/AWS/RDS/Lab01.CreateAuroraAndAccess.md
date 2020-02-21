@@ -40,25 +40,31 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 ① [EC2] > [Key pairs] > [Create keypairs] 클릭
 
 - Key pair name : aurora-lab-key 입력
+
   <img src="image/Lab01.Screenshot01.png" width="70%">
+
 - [Create] 클릭 하고 다운로드 되는 pem파일을 저장 해 둡니다.
 
 ② [CloudFormation] > [Stack] > [Create stack] 을 클릭하여 스택 생성을 시작합니다.
 ③ Specify template 화면에서
 
 - 아래 CloudFormation 템플릿을 다운로드 받아 업로드 합니다.
+
   [Lab01.env-template.json](https://github.com/louise-blackolive/sookim-portfolio/blob/master/blog/AWS/RDS/attachment/Lab01.env-template.json)
+
   <img src="image/Lab01.Screenshot02.png" width="80%">
 
 ④ Specify stack details 화면에서
 
 - Stack name : aurora-lab 입력
 - KeyName : aurora-lab-key 선택
+
   <img src="image/Lab01.Screenshot03.png" width="80%">
+
 - 나머지는 그대로 두고 [Next] 클릭
   ⑤ [Create stack] 을 클릭하여 스택 생성을 완료합니다.
 
-<그림 삽입>
+  <img src="image/Lab01.Screenshot04.png" width="80%">
 
 ### 5-2. RDS 인스턴스 생성하기
 
@@ -68,18 +74,27 @@ Amazon RDS는 관계형 데이터베이스를 빠르게 프로비저닝 하여 �
 - Engine options : Amazon Aurora 선택
 - Edition : Amazon Aurora with MySQL compatibility 선택
 - Version : Aurora(MySQL)-5.6.10a 선택
-  -- Instance Type 선택 부분 추가
-  <그림 삽입>
+
+  <img src="image/Lab01.Screenshot05.png" width="80%">
+
 - Template : Dev/Test 선택
 - DB Cluster Identifier : aurora-lab-mysql56 입력
 - Master username : sookim (본인의 아이디 입력)
 - Master password : 기억 할 수 있는 패스워드 입력
-  <그림 삽입>
+
+  <img src="image/Lab01.Screenshot06.png" width="80%">
+
+- DB Instance Type : db.t2.small 선택
+
+  <img src="image/Lab01.Screenshot07.png" width="80%">
+
 - VPC : CloudFormation 스택으로 생성 된 VPC 선택 (aurora-lab)
 - 아래 Additional connetivity configuration 화살표를 눌러 세부정보를 설정합니다.
 - Subnet group : CloudFormation 스택으로 생성 된 subnet group 선택 (aurora-lab)
 - Security Group : CloudFormation 스택으로 생성 된 Security Group 선택 (aurora-lab)
-  <그림 삽입>
+
+  <img src="image/Lab01.Screenshot08.png" width="80%">
+
 - [Create database] 클릭하여 생성 완료
 
 ### 5-3. 데이터베이스에 접속 해 보기
@@ -90,104 +105,65 @@ RDS 생성이 완료되었으면, 데이터베이스에 접속 할 수 있습니
 
 ① [EC2]>[Intance] 항목으로 가면 CloudFormation Stack 으로 생성 된 인스턴스가 있습니다.
 aurora-lab 인스턴스를 선택하여 Public IP 주소를 확인합니다.
-<그림 삽입>
 
->     Linux & Mac
->
-> ① 터미널 실행 후 앞 단계에서 다운받았던 keypair 가 있는 디렉토리로 이동.
-> ② keypair의 권한을 400으로 변경
->
-> ```
-> chmod 400 aurora-lab-key.pem
-> ```
->
-> ③ SSH 접속 수행
->
-> ```
-> ssh -i aurora-lab-key.pem centos@<hostname>
-> ```
->
-> <그림 삽입>
+<img src="image/Lab01.Screenshot09.png" width="80%">
 
-> windows
-> ④ Putty에서 사용되는 ppk 파일 생성
-> https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html
-> <그림 삽입>
-> ⑤ PuTTy Key Generator 실행
-> I. 창 가장 아래 parameter 를 [RSA] 로 선택
-> II. Load 클릭
-> III. 다운받은 keypair PEM 파일 선택
-> IV. Save private key 클릭
-> V. PPK 포맷으로 저장
-> <그림 삽입>
->
-> - _*ppk 파일로 변환 시 파일명은 pem 원본 파일과 같게 하고 확장자는 입력하지 않는다*_
->   ⑥ Putty 실행
->   ⑦ Session 카테고리에서
->   Host Name : EC2의 <접속유저>@<Public IP> 입력
->
-> ```
-> centos@ec2-13-124-68-204.ap-northeast-2.compute.amazonaws.com
-> ```
->
-> ⑧ Connection 카테고리에서
-> I. SSH -> Auth -> Private key file for authentication : Browse 클릭
-> II. ppk 파일 선택
-> III. open 클릭
-> <그림 삽입>
-> ⑨ 로그인
-> Login as : centos
-> <그림 삽입>
+② 터미널 실행 후 앞 단계에서 다운받았던 keypair 가 있는 디렉토리로 이동.
 
-EC2 인스턴스 접속에 성공했다면 아래와 같은 프롬프트가 떨어집니다
-<그림 삽입>
+③ keypair의 권한을 400으로 변경
+
+```
+chmod 400 aurora-lab-key.pem
+```
+
+④ SSH 접속 수행
+
+```
+ssh -i aurora-lab-key.pem centos@<hostname>
+```
+
+<img src="image/Lab01.Screenshot10.png" width="80%">
 
 RDS의 접속 정보를 확인하기 위해 웹 콘솔의 RDS로 이동합니다.
-② [RDS] > [Instance] 에서 생성 된 인스턴스를 클릭하여 정보를 확인합니다.
-<그림 삽입>
+
+⑤ [RDS] > [Instance] 에서 생성 된 인스턴스를 클릭하여 정보를 확인합니다.
+
+<img src="image/Lab01.Screenshot11.png" width="80%">
+
 ③ 터미널에서 MySQL 명령어를 이용하여 RDS에 접속합니다
 
 ```
 mysql -h <rds endpoint> -usookim -p
 ```
 
-<그림 삽입>
-
-터미널로 두 서버에 각가 접속하는 방법도 있지만, database tool을 이용하여 한 번에 접속할 수 있습니다.
-MySQL 툴인 Workbench로 접속 해 봅시다
-
-④ Workbench를 실행 시킨 후 + 버튼을 눌러 신규 연결을 만듭니다
-
-- Connection Name : 식별 가능한 이름을 지정합니다 (aurora-mysql56)
-- Connection Method : Standard TCP/IP over SSH 선택
-- SSH Hostname : EC2의 PublicIP를 입력합니다.
-- SSH Username : centos
-- SSH Key File : keypair를 지정합니다 (aurora-lab-key.pem)
-- MySQL Hostname : RDS의 endpoint 입력
-- Username : sookim
-
-<그림 삽입>
-
-⑤ 생성 된 연결을 더블클릭 및 데이터베이스 패스워드 입력 후 데이터베이스에 접속합니다
-
-<그림 삽입>
+<img src="image/Lab01.Screenshot12.png">
 
 ### 5-4. 테이블 생성 쿼리 수행하기
 
-wget
+이제 접속 한 데이터베이스에서 쿼리문을 실행 해 봅시다.
 
+① 데이터베이스 생성
+
+```SQL
+CREATE DATABASE aurora_test;
+
+USE aurora_test;
 ```
-CREATE DATABASE test;
 
-USE test;
+<img src="image/Lab01.Screenshot13.png" width="30%">
 
+② 테이블 생성
+
+```SQL
 DROP TABLE IF EXISTS `sbtest1`;
 CREATE TABLE `sbtest1` ( `id` int(10) unsigned NOT NULL AUTO_INCREMENT, `k` int(10) unsigned NOT NULL DEFAULT '0', `c` char(120) NOT NULL DEFAULT '', `pad` char(60) NOT NULL DEFAULT '',PRIMARY KEY (`id`), KEY `k_1` (`k`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
 
+<img src="image/Lab01.Screenshot14.png">
+
+<!--
+```SQL
 LOAD DATA LOCAL INFILE 'sample.part_00000' REPLACE INTO TABLE sbtest1 CHARACTER SET 'latin1' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
     EXIT
 ```
-
-wget 데이터파일
-mysql -h <endpoint> -usookim -p -f 데이터파일
-LOAD DATA LOCAL INFILE sample.part_00000 REPLACE INTO TABLE sbtest1 CHARACTER SET 'latin1' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
+-->
