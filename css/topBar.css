@@ -1,34 +1,42 @@
 .top-bar {
-  display: flex;
   height: 100px;
   background-color: #0a3d62;
   margin: 0;
   margin-left: 0px;
+  display: block;
 }
 
 .top-bar-title {
+  float: left;
   margin-left: 5%;
+  align-items: center;
+  height: 80%;
 }
 
 .top-bar-title h1 {
   font-family: "Anton";
   font-size: 250%;
   text-align: center;
-  vertical-align: middle;
   color: white;
 }
 
 .menu-bar {
   display: flex;
-  align-items: center;
+  float: right;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-right: 4%;
+  padding: 0;
+  width: 40%;
+  height: 60%;
   justify-content: space-between;
-  margin-left: 40%;
+  align-items: center;
 }
 
-.menu-bar : :first-child {
+.menu-bar li {
   font-family: "Anton";
-  font-size: 250%;
+  font-size: 150%;
   text-align: center;
-  vertical-align: middle;
   color: white;
+  margin-left: 5%;
 }
