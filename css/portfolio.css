@@ -1,0 +1,26 @@
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 900px;
+  width: 100%;
+  align-items: center;
+}
+
+.portfolio-name {
+  width: 30%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.portfolio-name a {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 300%;
+  color: #0a3d62;
+}
+
+.portfolio-line {
+  margin-top: 20px;
+  color: #0a3d62;
+}
