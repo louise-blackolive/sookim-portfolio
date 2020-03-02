@@ -1,0 +1,42 @@
+.masthead {
+  display: flex;
+  flex-direction: column;
+  background-color: #1abc9c;
+  height: 700px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.masthead-avatar {
+  width: 20%;
+  height: 50%;
+}
+
+.masthead-name {
+  width: 30%;
+  text-align: center;
+}
+
+.masthead-name a {
+  font-family: "Anton";
+  font-size: 300%;
+  color: white;
+}
+
+.masthead-line {
+  margin-top: 20px;
+  color: white;
+}
+
+.masthead-tech {
+  margin-top: 20px;
+  width: 30%;
+  text-align: center;
+}
+
+.masthead-tech a {
+  font-family: "Anton";
+  font-size: 180%;
+  color: white;
+}
