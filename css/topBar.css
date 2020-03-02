@@ -14,7 +14,8 @@
 }
 
 .top-bar-title h1 {
-  font-family: "Anton";
+  font-family: "Fjalla One";
+  font-weight: bold;
   font-size: 250%;
   text-align: center;
   color: white;
@@ -34,9 +35,18 @@
 }
 
 .menu-bar li {
-  font-family: "Anton";
+  font-family: "Fjalla One";
+  font-weight: bold;
   font-size: 150%;
   text-align: center;
   color: white;
   margin-left: 5%;
+}
+
+.top-bar-title h1:hover {
+  cursor: pointer;
+}
+
+.menu-bar li:hover {
+  cursor: pointer;
 }
