@@ -40,3 +40,11 @@
   color: white;
   margin-left: 5%;
 }
+
+.top-bar-title h1:hover {
+  cursor: pointer;
+}
+
+.menu-bar li:hover {
+  cursor: pointer;
+}
