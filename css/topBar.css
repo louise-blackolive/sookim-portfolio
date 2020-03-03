@@ -34,7 +34,8 @@
   align-items: center;
 }
 
-.menu-bar li {
+.menu-bar a {
+  text-decoration: none;
   font-family: "Fjalla One";
   font-weight: bold;
   font-size: 150%;
@@ -47,6 +48,6 @@
   cursor: pointer;
 }
 
-.menu-bar li:hover {
+.menu-bar a:hover {
   cursor: pointer;
 }
