@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: column;
   background-color: #1abc9c;
-  height: 700px;
+  height: 650px;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
 
 .masthead-avatar {
-  width: 20%;
-  height: 50%;
+  width: 250px;
 }
 
 .masthead-name {
-  width: 30%;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -32,7 +31,7 @@
 
 .masthead-tech {
   margin-top: 20px;
-  width: 30%;
+  width: 500px;
   text-align: center;
 }
 
