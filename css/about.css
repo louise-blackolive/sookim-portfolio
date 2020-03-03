@@ -1,0 +1,49 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  background-color: #1abc9c;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}
+
+.about-name {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.about-name a {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 300%;
+  color: white;
+}
+
+.about-line {
+  margin-top: 20px;
+  color: white;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.about-content-col1 {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 200%;
+  color: white;
+  margin-right: 30px;
+}
+
+.about-content-col2 {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 200%;
+  color: white;
+  margin-left: 30px;
+}

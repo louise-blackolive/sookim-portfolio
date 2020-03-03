@@ -9,7 +9,6 @@
 }
 
 .portfolio-name {
-  width: 30%;
   text-align: center;
   margin-top: 100px;
 }
@@ -31,38 +30,39 @@
   flex-wrap: wrap;
   margin-top: 5%;
   width: 90%;
+
   justify-content: center;
 }
 
 .content01 .content01-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
 
 .content02 .content02-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
 
 .content03 .content03-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
 .content04 .content04-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
 .content05 .content05-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
 .content06 .content06-img {
-  max-width: 20rem;
+  max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
 }
