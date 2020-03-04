@@ -30,39 +30,39 @@
   flex-wrap: wrap;
   margin-top: 5%;
   width: 90%;
-
   justify-content: center;
+  align-items: center;
 }
 
-.content01 .content01-img {
+.portfolio-item .portfolio-item-img {
   max-width: 27rem;
   border-radius: 0.5rem;
   margin: 5px;
+  cursor: pointer;
 }
 
-.content02 .content02-img {
-  max-width: 27rem;
+.portfolio .portfolio-item .portfolio-item-caption {
+  position: absolute;
+  width: 27rem;
+  height: 19.5rem;
   border-radius: 0.5rem;
   margin: 5px;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  background-color: rgba(26, 188, 156, 0.9);
 }
 
-.content03 .content03-img {
-  max-width: 27rem;
-  border-radius: 0.5rem;
-  margin: 5px;
+.portfolio-item-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.content04 .content04-img {
-  max-width: 27rem;
-  border-radius: 0.5rem;
-  margin: 5px;
+
+.portfolio-item-caption i {
+  color: white;
 }
-.content05 .content05-img {
-  max-width: 27rem;
-  border-radius: 0.5rem;
-  margin: 5px;
-}
-.content06 .content06-img {
-  max-width: 27rem;
-  border-radius: 0.5rem;
-  margin: 5px;
+
+.portfolio .portfolio-item .portfolio-item-caption:hover {
+  opacity: 1;
 }
