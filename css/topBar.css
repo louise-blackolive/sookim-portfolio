@@ -21,6 +21,12 @@
   color: white;
 }
 
+.top-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
 .menu-bar {
   display: flex;
   float: right;

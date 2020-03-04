@@ -1,29 +1,34 @@
-const navIcon = document.querySelector(".top-bar"),
+const navIcon = document.querySelector(".top-bar ul"),
   clickIcon = navIcon.querySelectorAll("a");
-
-console.log(clickIcon);
+const title = document.querySelector(".top-bar-title");
 
 function moveWindow(event) {
-  var destId = clickIcon.id;
-  console.log(destId);
-  if (destId === "js-scroll-portfolio") {
-    window.scrollTo({
-      top: 900,
-      behavior: "smooth"
-    });
-  } else if (destId === "js-scroll-about") {
-    window.scrollTo({
-      top: 1000,
-      behavior: "smooth"
-    });
-  }
+  event.preventDefault();
+  const targetId = event.currentTarget.getAttribute("href");
+  window.scrollTo({
+    top: targetId === "#" ? 0 : document.querySelector(targetId).offsetTop,
+    behavior: "smooth"
+  });
+}
+
+function navbarIconClick(event) {
+  moveWindow(event);
+}
+
+function toTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
 function init() {
   for (var i = 0; i < 3; i++) {
-    destId = clickIcon[i].id;
-    console.log(destId);
-    clickIcon[i].onclick = moveWindow();
+    clickIcon[i].addEventListener("click", navbarIconClick);
+  }
+  title.addEventListener("click", toTop);
+  if (performance.navigation.type === 1) {
+    toTop();
   }
 }
 
