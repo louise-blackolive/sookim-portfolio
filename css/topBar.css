@@ -21,6 +21,12 @@
   color: white;
 }
 
+.top-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
 .menu-bar {
   display: flex;
   float: right;
@@ -34,7 +40,8 @@
   align-items: center;
 }
 
-.menu-bar li {
+.menu-bar a {
+  text-decoration: none;
   font-family: "Fjalla One";
   font-weight: bold;
   font-size: 150%;
@@ -47,6 +54,6 @@
   cursor: pointer;
 }
 
-.menu-bar li:hover {
+.menu-bar a:hover {
   cursor: pointer;
 }
