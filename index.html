@@ -176,10 +176,12 @@
       <div class="form">
         <form name="sentMessage" id="contactForm" navalidate="novalidate">
           <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <input type="hidden" name="contact_number" />
             <label>Name</label>
             <input
               class="form-control"
               id="name"
+              name="from_name"
               type="text"
               placeholder="Name"
               required="required"
@@ -193,6 +195,7 @@
               class="form-control"
               id="email"
               type="email"
+              name="reply_to"
               placeholder="E-mail Address"
               required="required"
               data-validation-required-message="Please enter your email address."
@@ -205,6 +208,7 @@
               class="form-control"
               id="title"
               type="text"
+              name="subject_html"
               placeholder="Subject"
               data-validation-required-message="Please enter your email subject."
             />
@@ -216,6 +220,7 @@
               class="form-control"
               id="message"
               type="text"
+              name="message_html"
               placeholder="Message"
               required="required"
               data-validation-required-message="Please enter your a message."
@@ -464,6 +469,11 @@
     </div>
     <script src="js/navBar.js"></script>
     <script src="js/modal.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"
+    ></script>
+    <script src="js/mailInit.js"></script>
     <script src="js/contact.js"></script>
   </body>
 </html>
