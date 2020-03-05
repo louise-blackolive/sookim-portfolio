@@ -1,5 +1,7 @@
 const form = document.getElementById("contactForm");
 const sendBtn = document.querySelector(".form-group button");
+const mailModal = document.querySelector(".mail-modal");
+const mailBtn = document.querySelector(".mail-close-btn");
 
 /*
 function sendMail(event) {
@@ -34,8 +36,14 @@ function init() {
         // generate the contact number value
         this.contact_number.value = (Math.random() * 100000) | 0;
         emailjs.sendForm("gmail", "template_e7f4jm6J", this);
+        mailModal.classList.remove("hidden");
       });
   };
+
+  mailBtn.addEventListener("click", function() {
+    mailModal.classList.add("hidden");
+    location.reload();
+  });
 }
 
 init();
