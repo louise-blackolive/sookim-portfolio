@@ -4,6 +4,7 @@
   margin: 0;
   margin-left: 0px;
   display: block;
+  z-index: 100;
 }
 
 .top-bar-title {
