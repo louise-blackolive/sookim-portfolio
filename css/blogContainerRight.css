@@ -1,0 +1,85 @@
+.containerRight {
+  margin-top: 180px;
+  width: 24%;
+  flex-wrap: wrap;
+  margin-left: 70%;
+  position: fixed;
+}
+
+.search {
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.search-title {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.search-title label {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 200%;
+  color: rgba(10, 61, 98, 0.7);
+}
+
+.input-search {
+  width: 70%;
+  height: 40px;
+  border-radius: 0.3rem;
+  margin: 2%;
+}
+
+.searchBtn {
+  width: 20%;
+  height: 40px;
+  margin-right: 0;
+  border-radius: 0.3rem;
+  background-color: #1abc9c;
+  color: white;
+  font-family: "Fjalla One";
+  font-weight: bold;
+}
+
+.searchBtn:hover {
+  color: #212529;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.searchBtn:focus,
+.searchBtn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+}
+
+.searchBtn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+}
+
+.categories {
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+.category-title {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.category-title a {
+  font-family: "Fjalla One";
+  font-weight: bold;
+  font-size: 200%;
+  color: rgba(10, 61, 98, 0.7);
+}
