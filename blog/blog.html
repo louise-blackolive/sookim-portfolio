@@ -17,120 +17,168 @@
   <body>
     <!-- Nabigation bar -->
     <div class="top-bar">
-      <span class="top-bar-title"> <h1>HERE IS THE TITLE</h1></span>
+      <span class="top-bar-title" onclick="location.href='../index.html'">
+        <h1>HERE IS THE TITLE</h1></span
+      >
       <ul class="menu-bar">
         <li class="portfolio-icon">
-          <a class="portfolio-icon-link" href="#portfolio">Portfolio</a>
+          <a class="portfolio-icon-link" onclick="location.href='../index.html'"
+            >Portfolio</a
+          >
         </li>
         <li class="portfolio-icon">
-          <a class="portfolio-icon-link" href="#about">About</a>
+          <a class="portfolio-icon-link" onclick="location.href='../index.html'"
+            >About</a
+          >
         </li>
         <li class="portfolio-icon">
-          <a class="portfolio-icon-link" href="#contact">Contact</a>
+          <a class="portfolio-icon-link" onclick="location.href='../index.html'"
+            >Contact</a
+          >
         </li>
         <li class="portfolio-icon">
           <a class="portfolio-icon-link js-move-blog">Blog</a>
         </li>
       </ul>
     </div>
-    <!-- Blog Entry section -->
-    <div class="container">
-      <div class="container-title"><a>Recently Posted</a></div>
-      <div class="preview">
-        <div class="preview-img"><img src="../images/1.jpg" alt /></div>
-        <div class="preview-title"><a>This is Title 1</a></div>
-        <div class="preview-content">
-          <p>
-            This is content This is content This is content This is content This
-            is content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content
-          </p>
-        </div>
 
-        <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
-          Read More ->
-        </button>
-      </div>
-      <div class="preview">
-        <div class="preview-img"><img src="../images/2.jpg" alt /></div>
-        <div class="preview-title"><a>This is Title 2</a></div>
-        <div class="preview-content">
-          <p>
-            This is content This is content This is content This is content This
-            is content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content
-          </p>
+    <div class="blog">
+      <!-- Blog Entry section -->
+      <div class="containerLeft" id="postArea">
+        <div class="container-title"><a>Recently Posted</a></div>
+        <div class="preview">
+          <div class="preview-img"><img src="../images/1.jpg" alt /></div>
+          <div class="preview-title"><a>This is Title 1</a></div>
+          <div class="preview-content">
+            <p>
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content
+            </p>
+          </div>
+          <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
+            Read More ->
+          </button>
+          <div class="preview-date"><p>Posted on March 6, 2020</p></div>
         </div>
-
-        <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
-          Read More ->
-        </button>
-      </div>
-      <div class="preview">
-        <div class="preview-img"><img src="../images/3.jpg" alt /></div>
-        <div class="preview-title"><a>This is Title 3</a></div>
-        <div class="preview-content">
-          <p>
-            This is content This is content This is content This is content This
-            is content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content
-          </p>
+        <div class="preview">
+          <div class="preview-img"><img src="../images/2.jpg" alt /></div>
+          <div class="preview-title"><a>This is Title 2</a></div>
+          <div class="preview-content">
+            <p>
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content
+            </p>
+          </div>
+          <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
+            Read More ->
+          </button>
+          <div class="preview-date"><p>Posted on March 6, 2020</p></div>
         </div>
+        <div class="preview">
+          <div class="preview-img"><img src="../images/3.jpg" alt /></div>
+          <div class="preview-title"><a>This is Title 3</a></div>
+          <div class="preview-content">
+            <p>
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content
+            </p>
+          </div>
 
-        <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
-          Read More ->
-        </button>
-      </div>
-      <div class="preview">
-        <div class="preview-img"><img src="../images/4.jpg" alt /></div>
-        <div class="preview-title"><a>This is Title 4</a></div>
-        <div class="preview-content">
-          <p>
-            This is content This is content This is content This is content This
-            is content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content
-          </p>
+          <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
+            Read More ->
+          </button>
+          <div class="preview-date"><p>Posted on March 6, 2020</p></div>
         </div>
+        <div class="preview">
+          <div class="preview-img"><img src="../images/4.jpg" alt /></div>
+          <div class="preview-title"><a>This is Title 4</a></div>
+          <div class="preview-content">
+            <p>
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content
+            </p>
+          </div>
 
-        <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
-          Read More ->
-        </button>
-      </div>
-      <div class="preview">
-        <div class="preview-img"><img src="../images/5.jpg" alt /></div>
-        <div class="preview-title"><a>This is Title 5</a></div>
-        <div class="preview-content">
-          <p>
-            This is content This is content This is content This is content This
-            is content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content This is content This is
-            content This is content This is content
-          </p>
+          <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
+            Read More ->
+          </button>
+          <div class="preview-date"><p>Posted on March 6, 2020</p></div>
         </div>
+        <div class="preview">
+          <div class="preview-img"><img src="../images/5.jpg" alt /></div>
+          <div class="preview-title"><a>This is Title 5</a></div>
+          <div class="preview-content">
+            <p>
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content This is content
+              This is content This is content This is content
+            </p>
+          </div>
 
-        <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
-          Read More ->
-        </button>
+          <button class="mail-close-btn btn-primary blog-preview-btn" href="#">
+            Read More ->
+          </button>
+          <div class="preview-date"><p>Posted on March 6, 2020</p></div>
+        </div>
       </div>
+      <!-- Search section -->
+      <div class="containerRight">
+        <div class="search">
+          <form action="https://www.google.com/search" id="searchForm">
+            <div class="search-title">
+              <label for="input-search">Search</label>
+            </div>
+            <input
+              class="input-search"
+              type="text"
+              name="q"
+              id="input-search"
+              placeholder="Title Search"
+            />
+            <button class="searchBtn" id="submit-search">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+        <div class="categories">
+          <div class="category-title">
+            <a>Categories</a>
+          </div>
+          <div class="category-contents"></div>
+          <ul class="category-list">
+            <li><a href="#">AWS</a></li>
+            <li><a href="#">GCP</a></li>
+            <li><a href="#">JavaScript</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="include" data-include="../js/text.html"></div>
     </div>
+    <script src="../js/navBar.js"></script>
+    <script src="../js/readMore.js"></script>
   </body>
 </html>

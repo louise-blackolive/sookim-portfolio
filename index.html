@@ -17,7 +17,7 @@
   <body>
     <!-- Nabigation bar -->
     <div class="top-bar">
-      <span class="top-bar-title"> <h1>HERE IS THE TITLE</h1></span>
+      <div class="top-bar-title"><h1>HERE IS THE TITLE</h1></div>
       <ul class="menu-bar">
         <li class="portfolio-icon">
           <a class="portfolio-icon-link" href="#portfolio">Portfolio</a>
@@ -29,7 +29,11 @@
           <a class="portfolio-icon-link" href="#contact">Contact</a>
         </li>
         <li class="portfolio-icon">
-          <a class="portfolio-icon-link js-move-blog">Blog</a>
+          <a
+            class="portfolio-icon-link js-move-blog"
+            onclick="location.href='blog/blog.html'"
+            >Blog</a
+          >
         </li>
       </ul>
     </div>
@@ -472,12 +476,13 @@
       <!-- Modal Dialog-->
       <div class="modal-dialog" role="document"></div>
       <div class="mail-modal-content">
-        <div class="mail-modal-text"> 메일이 성공적으로 전송되었습니다.</div>
+        <div class="mail-modal-text">메일이 성공적으로 전송되었습니다.</div>
         <button class="mail-close-btn btn-primary" href="#">
           <i class="fas fa-times fa-fw"></i>
           Close Window
         </button>
       </div>
+    </div>
     <script src="js/navBar.js"></script>
     <script src="js/modal.js"></script>
     <script

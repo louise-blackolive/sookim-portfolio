@@ -4,7 +4,8 @@
 @import "about.css";
 @import "contact.css";
 @import "modal.css";
-@import "blog.css";
+@import "blogContainerLeft.css";
+@import "blogContainerRight.css";
 
 body {
   margin: 0;
